@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoinFlip
+namespace CoinFlip2
 {
     class Program
     {
@@ -8,6 +8,7 @@ namespace CoinFlip
         {
             int coin;
             string userGuess;
+            string coinDescription = "Tails";
             Random rng = new Random();
 
             // Query the user
@@ -16,25 +17,18 @@ namespace CoinFlip
 
             // Get a random number for the coin flip
             coin = rng.Next(0, 2);
+            if (coin == 1)
+            {
+                coinDescription = "Heads";
+            }
 
-            if(coin == 0 && userGuess == "T")
+            if ((coin == 0 && userGuess == "T") || (coin == 1 && userGuess == "H"))
             {
-                Console.WriteLine("The coin flip was Tails, you win!");
-            }
-            else if (coin == 1 && userGuess == "H")
-            {
-                Console.WriteLine("The coin flip was Heads, you win!");
-            }
+                Console.WriteLine("The coin flip was {0}, you win!", coinDescription);
+            }          
             else
             {
-                if (coin == 0)
-                {
-                    Console.WriteLine("The coin flip was Tails, you lose!");
-                }
-                else
-                {
-                    Console.WriteLine("The coin flip was Heads, you lose!");
-                }
+                Console.WriteLine("The coin flip was {0}, you lose!", coinDescription);
             }
 
             Console.ReadLine();
